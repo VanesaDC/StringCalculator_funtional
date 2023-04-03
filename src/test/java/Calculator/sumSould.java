@@ -12,7 +12,9 @@ import static org.junit.jupiter.api.Assertions.*;
 class sumSould {
 
     public int add(String texto) {
-        if (texto.length()==1){
+        boolean is_a_unique_number = texto.length() == 1;
+
+        if (is_a_unique_number){
             return Integer.parseInt(texto);
         }
         return 0;
