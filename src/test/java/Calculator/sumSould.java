@@ -27,6 +27,10 @@ class sumSould {
     void a_number_results_the_same_number(){
         assertEquals(1, add("1"));
     }
+    @Test
+    void two_numbers_results_the_sum_of_the_numbers(){
+        assertEquals(3, add("1,3"));
+    }
 
 
 
