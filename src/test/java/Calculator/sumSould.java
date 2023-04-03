@@ -11,7 +11,10 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class sumSould {
 
-    public int add(String s) {
+    public int add(String texto) {
+        if (texto.length()==1){
+            return Integer.parseInt(texto);
+        }
         return 0;
     }
     @Test
