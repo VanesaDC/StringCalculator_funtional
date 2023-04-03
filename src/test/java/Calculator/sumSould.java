@@ -1,6 +1,9 @@
 package Calculator;
 
 import org.junit.jupiter.api.Test;
+
+import java.util.ArrayList;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 /*
@@ -17,6 +20,10 @@ class sumSould {
         if (is_a_unique_number){
             return Integer.parseInt(texto);
         }
+        if (texto.length()==3){
+            String[] numbers= texto.split(",");
+            return Integer.parseInt(numbers[0])+ Integer.parseInt(numbers[1]);
+        }
         return 0;
     }
     @Test
@@ -29,7 +36,7 @@ class sumSould {
     }
     @Test
     void two_numbers_results_the_sum_of_the_numbers(){
-        assertEquals(3, add("1,3"));
+        assertEquals(3, add("1,2"));
     }
 
 
