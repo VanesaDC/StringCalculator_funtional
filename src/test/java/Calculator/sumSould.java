@@ -11,13 +11,13 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class sumSould {
 
-    private int sum(String s) {
+    public int add(String s) {
         return 0;
     }
     @Test
 
     void foo(){
-        assertEquals(0,sum(""));
+        assertEquals(0, add(""));
     }
 
 
