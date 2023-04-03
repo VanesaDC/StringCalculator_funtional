@@ -18,6 +18,10 @@ class sumSould {
     void empty_entry_results_0(){
         assertEquals(0, add(""));
     }
+    @Test
+    void a_number_results_the_same_number(){
+        assertEquals(1, add("1"));
+    }
 
 
 
