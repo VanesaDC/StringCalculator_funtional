@@ -15,10 +15,10 @@ class sumSould {
         return 0;
     }
     @Test
-
-    void foo(){
+    void empty_entry_results_0(){
         assertEquals(0, add(""));
     }
+
 
 
 
