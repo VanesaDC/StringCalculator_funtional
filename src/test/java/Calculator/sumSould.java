@@ -26,6 +26,10 @@ class sumSould {
             return Integer.parseInt(numberSeries);
         }
 
+        if (numberSeries.contains("\n")){
+            numberSeries = numberSeries.replace("\n",",");
+        }
+
         String[] numbers = numberSeries.split(",");
         int sum=0;
         for (String number:
