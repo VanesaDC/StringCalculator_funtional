@@ -101,7 +101,7 @@ class sumSould {
         String errorMessage = "Error: Negatives numbers not allwed";
         NegativeNumberException exceptionCapture = assertThrows(NegativeNumberException.class, ()->
                 add("1,-2"));
-        assertEquals(errorMessage,exceptionCapture.getMessage);
+        assertEquals(errorMessage,exceptionCapture);
     }
 
 
