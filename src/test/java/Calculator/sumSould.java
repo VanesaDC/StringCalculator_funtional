@@ -31,13 +31,7 @@ class sumSould {
             delimiter = delimiter.replace("[","");
             delimiter = delimiter.replace("]","");
             numberSeries = numberSeries.replace(delimiter,",");
-            String[] numbers = numberSeries.split(",");
-            int sum = 0;
-            for (String number:
-                    numbers) {
-                sum += Integer.parseInt(number);
-            }
-            return sum;
+            return resultOfSum(numberSeries);
 
         }
 
@@ -45,6 +39,10 @@ class sumSould {
             entry = entry.replace("\n",",");
         }
 
+        return resultOfSum(entry);
+    }
+
+    private static int resultOfSum(String entry) {
         String[] numbers = entry.split(",");
         int sum = 0;
         for (String number:
