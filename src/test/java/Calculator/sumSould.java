@@ -33,7 +33,13 @@ class sumSould {
             delimiter = delimiter.replace("]","");
             numberSeries = numberSeries.replace(delimiter,",");
 
-            return resultOfSum(numberSeries);
+            int total=0;
+            try {
+                total= resultOfSum(numberSeries);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return total;
 
         }
 
@@ -41,15 +47,27 @@ class sumSould {
             entry = entry.replace("\n",",");
         }
 
-        return resultOfSum(entry);
+        int total=0;
+        try {
+            total= resultOfSum(entry);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return total;
+
     }
 
-    private static int resultOfSum(String entry) {
+    private static int resultOfSum(String entry) throws NegativeException{
         String[] numbers = entry.split(",");
         int sum = 0;
         for (String number:
              numbers) {
-            sum += Integer.parseInt(number);
+            if (Integer.parseInt(number)<0){
+                throw new NegativeException ("Error: Negatives numbers not allwed");
+            }else{
+                sum += Integer.parseInt(number);
+            }
+
         }
         return sum;
     }
@@ -99,9 +117,9 @@ class sumSould {
     @Test
     void throw_exception_if_entry_contain_negatives_number(){
         String errorMessage = "Error: Negatives numbers not allwed";
-        NegativeNumberException exceptionCapture = assertThrows(NegativeNumberException.class, ()->
+        NegativeException exceptionCapture = assertThrows(NegativeException.class, ()->
                 add("1,-2"));
-        assertEquals(errorMessage,exceptionCapture);
+        assertEquals(errorMessage,exceptionCapture.getMessage());
     }
 
 
