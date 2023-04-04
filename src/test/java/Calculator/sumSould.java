@@ -10,6 +10,7 @@ import static org.junit.jupiter.api.Assertions.*;
 "1,2"->3
 "1\n2,3"->6
 "//[;]\n1;2"->3
+"1,-2,-3"->exception with all negative numbers
  */
 
 class sumSould {
@@ -31,6 +32,7 @@ class sumSould {
             delimiter = delimiter.replace("[","");
             delimiter = delimiter.replace("]","");
             numberSeries = numberSeries.replace(delimiter,",");
+
             return resultOfSum(numberSeries);
 
         }
@@ -94,7 +96,13 @@ class sumSould {
     void allow_support_different_delimiter(){
         assertEquals(3, add("//[;]\n1;2"));
     }
-
+    @Test
+    void throw_exception_if_entry_contain_negatives_number(){
+        String errorMessage = "Error: Negatives numbers not allwed";
+        NegativeNumberException exceptionCapture = assertThrows(NegativeNumberException.class, ()->
+                add("1,-2"));
+        assertEquals(errorMessage,exceptionCapture.getMessage);
+    }
 
 
 
