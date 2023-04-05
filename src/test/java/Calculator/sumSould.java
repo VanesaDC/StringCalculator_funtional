@@ -45,7 +45,9 @@ class sumSould {
             if (Integer.parseInt(number) < 0) {
                 negativeNumbers = negativeNumbers + " " + number;
             }else{
-                sum += Integer.parseInt(number);
+                if ( Integer.parseInt(number)<1000) {
+                    sum += Integer.parseInt(number);
+                }
             }
         }
         if (!negativeNumbers.isEmpty()) {
