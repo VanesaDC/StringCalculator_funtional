@@ -42,12 +42,12 @@ class sumSould {
         String negativeNumbers ="";
         for (String number :
                 numbers) {
-            if (Integer.parseInt(number) < 0) {
+            if (Integer.parseInt(number) < 0)
                 negativeNumbers = negativeNumbers + " " + number;
-            }else{
+            else
                 if ( Integer.parseInt(number)<1000)
                     sum += Integer.parseInt(number);
-            }
+
         }
 
         if (!negativeNumbers.isEmpty()) {
