@@ -10,7 +10,7 @@ import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 "1,2"->3
 "1\n2,3"->6
 "//[;]\n1;2"->3
-"1,-2,-3"->exception with all negative numbers
+"1,-2"->exception with all negative numbers
  */
 
 class sumSould {
@@ -96,8 +96,8 @@ class sumSould {
    @Test
     void throw_exception_if_entry_contain_negatives_number() {
         assertThatExceptionOfType(NegativeException.class).isThrownBy(() -> {
-            add("1,-2");
-        }).withMessage("Error: Negatives numbers not allowed -2");
+            add("1,-2,-3");
+        }).withMessage("Error: Negatives numbers not allowed -2 -3");
     }
 
 }
