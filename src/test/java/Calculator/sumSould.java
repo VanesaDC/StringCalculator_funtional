@@ -38,13 +38,17 @@ class sumSould {
 
         String[] numbers = entry.split(",");
         int sum = 0;
+        String negativeNumbers ="";
         for (String number :
                 numbers) {
             if (Integer.parseInt(number) < 0) {
-                throw new NegativeException("Error: Negatives numbers not allowed " + number);
-            } else {
+                negativeNumbers = negativeNumbers + " " + number;
+            }else{
                 sum += Integer.parseInt(number);
             }
+        }
+        if (!negativeNumbers.isEmpty()) {
+            throw new NegativeException("Error: Negatives numbers not allowed " + negativeNumbers);
         }
 
         return sum ;
@@ -97,7 +101,7 @@ class sumSould {
     void throw_exception_if_entry_contain_negatives_number() {
         assertThatExceptionOfType(NegativeException.class).isThrownBy(() -> {
             add("1,-2,-3");
-        }).withMessage("Error: Negatives numbers not allowed -2 -3");
+        }).withMessage("Error: Negatives numbers not allowed  -2 -3");
     }
 
 }
