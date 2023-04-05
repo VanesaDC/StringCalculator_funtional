@@ -12,6 +12,7 @@ import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 "//[;]\n1;2"->3
 "1,-2"->exception with all negative numbers
 "1,1001"->1
+"1***2***3"->6
  */
 
 class sumSould {
@@ -109,6 +110,10 @@ class sumSould {
     @Test
     void ignore_numbers_greater_than_1000() throws NegativeException {
         assertEquals(1, add("1,1001"));
+    }
+    @Test
+    void allow_delimiter_with_any_length() throws NegativeException {
+        assertEquals(6, add("1***2***3"));
     }
 
 }
