@@ -45,11 +45,11 @@ class sumSould {
             if (Integer.parseInt(number) < 0) {
                 negativeNumbers = negativeNumbers + " " + number;
             }else{
-                if ( Integer.parseInt(number)<1000) {
+                if ( Integer.parseInt(number)<1000)
                     sum += Integer.parseInt(number);
-                }
             }
         }
+
         if (!negativeNumbers.isEmpty()) {
             throw new NegativeException("Error: Negatives numbers not allowed " + negativeNumbers);
         }
