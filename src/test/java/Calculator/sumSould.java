@@ -13,6 +13,7 @@ import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 "1,-2"->exception with all negative numbers
 "1,1001"->1
 "//[***]\n1***2***3"->6
+"//[*][%]\n1*2%3"->6
  */
 
 class sumSould {
@@ -115,6 +116,11 @@ class sumSould {
     void allow_delimiter_with_any_length() throws NegativeException {
         assertEquals(6, add("//[***]\n1***2***3"));
     }
+    @Test
+    void allow_multiple_delimiter() throws NegativeException {
+        assertEquals(6, add("//[*][%]\n1*2%3"));
+    }
+
 
 }
 
