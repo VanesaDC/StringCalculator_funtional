@@ -60,11 +60,20 @@ class sumSould {
     }
 
     private String setNewDelimiter(String entry) {
-        String[] entrySubdivisions= entry.split("\n",0);
-        String delimiter= entrySubdivisions[0].substring(2);
-        delimiter= delimiter.replace("[","");
-        delimiter = delimiter.replace("]", "");
-        entry = entrySubdivisions[1].replace(delimiter, ",");
+        String newLine = "\n";
+        String[] entrySubdivisions = entry.split(newLine,0);
+        String subdivisionDelimiters = entrySubdivisions[0].substring(2);
+        String subdivisionNumbers = entrySubdivisions[1];
+        subdivisionDelimiters = subdivisionDelimiters.replace("[","");
+        String [] delimiters = subdivisionDelimiters.split("]");
+        for (int i= 0; i<delimiters.length;i++){
+            subdivisionNumbers = subdivisionNumbers.replace(delimiters[i],",");
+        }
+        entry = subdivisionNumbers;
+
+
+
+
         return entry;
     }
 
@@ -118,7 +127,7 @@ class sumSould {
     }
     @Test
     void allow_multiple_delimiter() throws NegativeException {
-        assertEquals(6, add("//[*][%]\n1*2%3"));
+        assertEquals(6, add("//[&][%]\n1&2%3"));
     }
 
 
