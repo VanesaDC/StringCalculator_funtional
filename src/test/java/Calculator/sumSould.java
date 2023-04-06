@@ -18,7 +18,7 @@ import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
 class sumSould {
 
-    public int add(String entry) throws NegativeException {
+    public int add (String entry) throws NegativeException {
 
         if (entry.isEmpty()) {
             return 0;
@@ -70,10 +70,6 @@ class sumSould {
             subdivisionNumbers = subdivisionNumbers.replace(delimiters[i],",");
         }
         entry = subdivisionNumbers;
-
-
-
-
         return entry;
     }
 
