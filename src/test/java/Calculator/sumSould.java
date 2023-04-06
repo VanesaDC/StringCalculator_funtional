@@ -41,35 +41,36 @@ class sumSould {
 
         String[] numbers = entry.split(",");
         int sum = 0;
-        String negativeNumbers ="";
+        StringBuilder negativeNumbers = new StringBuilder();
         for (String number :
                 numbers) {
             if (Integer.parseInt(number) < 0)
-                negativeNumbers = negativeNumbers + " " + number;
+                negativeNumbers.append(" ").append(number);
             else
                 if ( Integer.parseInt(number)<1000)
                     sum += Integer.parseInt(number);
-
         }
 
-        if (!negativeNumbers.isEmpty()) {
+        if (negativeNumbers.length() > 0) {
             throw new NegativeException("Error: Negatives numbers not allowed " + negativeNumbers);
         }
 
         return sum ;
     }
 
+
     private String setNewDelimiter(String entry) {
+
         String newLine = "\n";
         String[] entrySubdivisions = entry.split(newLine,0);
-        String subdivisionDelimiters = entrySubdivisions[0].substring(2);
-        String subdivisionNumbers = entrySubdivisions[1];
-        subdivisionDelimiters = subdivisionDelimiters.replace("[","");
-        String [] delimiters = subdivisionDelimiters.split("]");
-        for (int i= 0; i<delimiters.length;i++){
-            subdivisionNumbers = subdivisionNumbers.replace(delimiters[i],",");
+        String delimitersSubdivision = entrySubdivisions[0].substring(2);
+        String numberSubdivision = entrySubdivisions[1];
+        delimitersSubdivision = delimitersSubdivision.replace("[","");
+        String [] delimiters = delimitersSubdivision.split("]");
+        for (String delimiter : delimiters) {
+            numberSubdivision = numberSubdivision.replace(delimiter, ",");
         }
-        entry = subdivisionNumbers;
+        entry = numberSubdivision;
         return entry;
     }
 
@@ -109,9 +110,7 @@ class sumSould {
 
    @Test
     void throw_exception_if_entry_contain_negatives_number() {
-        assertThatExceptionOfType(NegativeException.class).isThrownBy(() -> {
-            add("1,-2,-3");
-        }).withMessage("Error: Negatives numbers not allowed  -2 -3");
+        assertThatExceptionOfType(NegativeException.class).isThrownBy(() -> add("1,-2,-3")).withMessage("Error: Negatives numbers not allowed  -2 -3");
     }
     @Test
     void ignore_numbers_greater_than_1000() throws NegativeException {
