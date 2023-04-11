@@ -10,13 +10,14 @@ import static org.junit.jupiter.api.Assertions.*;
 "" ->0
 "1"->1
 "1,2"->3
+“1\n2,3”->6
  */
 
 class sumSould {
 
     public int add(String texto) {
-        boolean is_a_unique_number = texto.length() == 1;
 
+        boolean is_a_unique_number = texto.length() == 1;
         if (is_a_unique_number){
             return Integer.parseInt(texto);
         }
@@ -37,6 +38,10 @@ class sumSould {
     @Test
     void two_numbers_results_the_sum_of_the_numbers(){
         assertEquals(3, add("1,2"));
+    }
+    @Test
+    void allow_new_line_between_numbers_instead_of_commas(){
+        assertEquals(6, add("1\n2,3"));
     }
 
 
