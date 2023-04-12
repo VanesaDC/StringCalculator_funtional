@@ -18,6 +18,7 @@ import static org.junit.jupiter.api.Assertions.*;
 “1\n2,3”->6
 “//[;]\n1;2”->3
 "1,-2,-3"->Exception -2 -3
+"1,1001"->1
  */
 
 class sumSould {
@@ -91,6 +92,10 @@ class sumSould {
     void Throw_a_exception_when_entry_contains_negative_number(){
        String message= assertThrows(NegativeException.class,()->add("1,-2,-3")).getMessage();
        assertEquals("Error: negative numbers not allowed: -2 -3",message);
+    }
+    @Test
+    void allow_ignore_numbers_greater_than_1000() throws NegativeException {
+        assertEquals(1, add("1,1001"));
     }
 
 
