@@ -14,6 +14,7 @@ import static org.junit.jupiter.api.Assertions.*;
 "1,2"->3
 “1\n2,3”->6
 “//[;]\n1;2”->3
+"1,-2,-3"->Exception -2 -3
  */
 
 class sumSould {
@@ -74,7 +75,10 @@ class sumSould {
     void allow_different_delimiters(){
         assertEquals(3, add("//[;]\n1;2"));
     }
-
+    @Test
+    void Throw_a_exception_when_entry_contains_negative_number(){
+       assertThrows(NegativeException.class,()-> add("1,-2,-3"));
+    }
 
 
 
