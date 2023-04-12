@@ -13,6 +13,7 @@ import static org.junit.jupiter.api.Assertions.*;
 "1"->1
 "1,2"->3
 “1\n2,3”->6
+“//[;]\n1;2”->3
  */
 
 class sumSould {
@@ -52,6 +53,10 @@ class sumSould {
     @Test
     void allow_new_line_between_numbers_instead_of_commas(){
         assertEquals(6, add("1\n2,3"));
+    }
+    @Test
+    void allow_different_delimiters(){
+        assertEquals(3, add("//[;]\n1;2"));
     }
 
 
