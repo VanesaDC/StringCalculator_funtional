@@ -56,14 +56,28 @@ class sumSould {
     }
 
     private static String setDelimiter(String entry) {
-        entry = entry.replace("//", "");
+
+        String newLine = "\n";
+        String[] entrySubdivisions = entry.split(newLine,0);
+        String delimitersGroup = entrySubdivisions[0].substring(2);
+        String numberGroup = entrySubdivisions[1];
+        delimitersGroup = delimitersGroup.replace("[","");
+        String [] delimiters = delimitersGroup.split("]");
+        //¿Se puede aplicar funcional?
+        for (String delimiter : delimiters) {
+            numberGroup = numberGroup.replace(delimiter, ",");
+        }
+        entry = numberGroup;
+
+
+        /*entry = entry.replace("//", "");
         entry = entry.replace("[", "");
         entry = entry.replace("]", "");
         String delimiter= String.valueOf(entry.charAt(0));
         char delimit = entry.charAt(0);
         entry = entry.replaceFirst(String.valueOf(delimit), "");
         entry = entry.replaceFirst("\n","");
-        entry = entry.replace(delimiter,",");
+        entry = entry.replace(delimiter,",");*/
         return entry;
     }
 
