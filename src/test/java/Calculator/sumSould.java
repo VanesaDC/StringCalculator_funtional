@@ -19,6 +19,7 @@ import static org.junit.jupiter.api.Assertions.*;
 “//[;]\n1;2”->3
 "1,-2,-3"->Exception -2 -3
 "1,1001"->1
+"//[***]\n1***2***3"->6
  */
 
 class sumSould {
@@ -96,6 +97,10 @@ class sumSould {
     @Test
     void allow_ignore_numbers_greater_than_1000() throws NegativeException {
         assertEquals(1, add("1,1001"));
+    }
+    @Test
+    void allow_delimiter_with_different_length() throws NegativeException {
+        assertEquals(6, add("//[***]\n1***2***3"));
     }
 
 
