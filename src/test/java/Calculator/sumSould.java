@@ -3,6 +3,9 @@ package Calculator;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -16,17 +19,23 @@ import static org.junit.jupiter.api.Assertions.*;
 class sumSould {
 
     public int add(String texto) {
+        if (texto.isEmpty())
+            return 0;
 
         boolean is_a_unique_number = texto.length() == 1;
         if (is_a_unique_number){
             return Integer.parseInt(texto);
         }
-        if (texto.length()==3){
-            String[] numbers= texto.split(",");
-            return Integer.parseInt(numbers[0])+ Integer.parseInt(numbers[1]);
+
+        if (texto.contains("\n")){
+            texto= texto.replace("\n", ",");
         }
-        return 0;
+            String[] numberSeries= texto.split(",");
+            List<Integer> numbers= Arrays.stream(numberSeries).map((num)->Integer.parseInt(num)).collect(Collectors.toList());
+            return numbers.stream().reduce(0,(subtotal, number)->subtotal + number);
     }
+
+
     @Test
     void empty_entry_results_0(){
         assertEquals(0, add(""));
