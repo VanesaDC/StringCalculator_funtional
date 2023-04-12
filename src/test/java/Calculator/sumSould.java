@@ -65,16 +65,6 @@ class sumSould {
             numberGroup = numberGroup.replace(delimiter, ",");
         }
         entry = numberGroup;
-
-
-        /*entry = entry.replace("//", "");
-        entry = entry.replace("[", "");
-        entry = entry.replace("]", "");
-        String delimiter= String.valueOf(entry.charAt(0));
-        char delimit = entry.charAt(0);
-        entry = entry.replaceFirst(String.valueOf(delimit), "");
-        entry = entry.replaceFirst("\n","");
-        entry = entry.replace(delimiter,",");*/
         return entry;
     }
 
@@ -116,9 +106,4 @@ class sumSould {
     void allow_multiples_delimiters_() throws NegativeException {
         assertEquals(6, add("//[*][%]\n1*2%3"));
     }
-
-
-
-
-
 }
