@@ -1,14 +1,9 @@
 package Calculator;
 
 import org.junit.jupiter.api.Test;
-
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 /*
@@ -20,6 +15,7 @@ import static org.junit.jupiter.api.Assertions.*;
 "1,-2,-3"->Exception -2 -3
 "1,1001"->1
 "//[***]\n1***2***3"->6
+"//[*][%]\n1*2%3"->6
  */
 
 class sumSould {
@@ -33,7 +29,8 @@ class sumSould {
             return Integer.parseInt(entry);
         }
 
-        if (entry.contains("//")) {
+        String newDelimiter = "//";
+        if (entry.contains(newDelimiter)) {
             entry = setDelimiter(entry);
         }
 
@@ -42,14 +39,14 @@ class sumSould {
             entry= entry.replace(newLine, ",");
         }
 
-        String[] numberSeries= entry.split(",");
+        String[] figures= entry.split(",");
 
-        List<Integer> numbers= Arrays.stream(numberSeries).map((num)->Integer.parseInt(num)).collect(Collectors.toList());
-        List<Integer> negatives= numbers.stream().filter(negative->negative<0).collect(Collectors.toList());
-        List<String> negativesLetter= negatives.stream().map(neg->neg.toString()).collect(Collectors.toList());
-        String negativesSentence= negativesLetter.stream().reduce("",(sentence,word)->sentence +" "+ word);
-        if (!negativesSentence.isEmpty()) {
-            throw new NegativeException("Error: negative numbers not allowed:" + negativesSentence);
+        List<Integer> numbers= Arrays.stream(figures).map((num)->Integer.parseInt(num)).collect(Collectors.toList());
+        List<Integer> negativeNumbers= numbers.stream().filter(negative->negative<0).collect(Collectors.toList());
+        List<String> negativeExpression= negativeNumbers.stream().map(number->number.toString()).collect(Collectors.toList());
+        String statement= negativeExpression.stream().reduce("",(sentence,word)->sentence +" "+ word);
+        if (!statement.isEmpty()) {
+            throw new NegativeException("Error: negative numbers not allowed:" + statement);
         }
         return numbers.stream().reduce(0,(subtotal, number)->{ if (number<1000){ return  subtotal + number;}
             return subtotal;});
@@ -58,7 +55,7 @@ class sumSould {
     private static String setDelimiter(String entry) {
 
         String newLine = "\n";
-        String[] entrySubdivisions = entry.split(newLine,0);
+        String[] entrySubdivisions = entry.split(newLine);
         String delimitersGroup = entrySubdivisions[0].substring(2);
         String numberGroup = entrySubdivisions[1];
         delimitersGroup = delimitersGroup.replace("[","");
@@ -97,7 +94,6 @@ class sumSould {
     @Test
     void allow_new_line_between_numbers_instead_of_commas() throws NegativeException {
         assertEquals(6, add("1\n2,3"));
-
     }
     @Test
     void allow_different_delimiters() throws NegativeException {
@@ -115,6 +111,10 @@ class sumSould {
     @Test
     void allow_delimiter_with_different_length() throws NegativeException {
         assertEquals(6, add("//[***]\n1***2***3"));
+    }
+    @Test
+    void allow_multiples_delimiters_() throws NegativeException {
+        assertEquals(6, add("//[*][%]\n1*2%3"));
     }
 
 
