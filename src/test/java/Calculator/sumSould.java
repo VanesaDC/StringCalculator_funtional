@@ -2,7 +2,6 @@ package Calculator;
 
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -18,21 +17,23 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class sumSould {
 
-    public int add(String texto) {
-        if (texto.isEmpty())
+    public int add(String entry) {
+        if (entry.isEmpty())
             return 0;
 
-        boolean is_a_unique_number = texto.length() == 1;
-        if (is_a_unique_number){
-            return Integer.parseInt(texto);
+        boolean isAUniqueNumber = entry.length() == 1;
+        if (isAUniqueNumber){
+            return Integer.parseInt(entry);
         }
 
-        if (texto.contains("\n")){
-            texto= texto.replace("\n", ",");
+        String newLine = "\n";
+        if (entry.contains(newLine)){
+            entry= entry.replace(newLine, ",");
         }
-            String[] numberSeries= texto.split(",");
-            List<Integer> numbers= Arrays.stream(numberSeries).map((num)->Integer.parseInt(num)).collect(Collectors.toList());
-            return numbers.stream().reduce(0,(subtotal, number)->subtotal + number);
+
+        String[] numberSeries= entry.split(",");
+        List<Integer> numbers= Arrays.stream(numberSeries).map((num)->Integer.parseInt(num)).collect(Collectors.toList());
+        return numbers.stream().reduce(0,(subtotal, number)->subtotal + number);
     }
 
 
@@ -52,6 +53,7 @@ class sumSould {
     void allow_new_line_between_numbers_instead_of_commas(){
         assertEquals(6, add("1\n2,3"));
     }
+
 
 
 
