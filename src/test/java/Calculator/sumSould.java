@@ -46,12 +46,12 @@ class sumSould {
         List<Integer> numbers= Arrays.stream(numberSeries).map((num)->Integer.parseInt(num)).collect(Collectors.toList());
         List<Integer> negatives= numbers.stream().filter(negative->negative<0).collect(Collectors.toList());
         List<String> negativesLetter= negatives.stream().map(neg->neg.toString()).collect(Collectors.toList());
-
         String negativesSentence= negativesLetter.stream().reduce("",(sentence,word)->sentence +" "+ word);
         if (!negativesSentence.isEmpty()) {
             throw new NegativeException("Error: negative numbers not allowed:" + negativesSentence);
         }
-        return numbers.stream().reduce(0,(subtotal, number)->subtotal + number);
+        return numbers.stream().reduce(0,(subtotal, number)->{ if (number<1000){ return  subtotal + number;}
+            return subtotal;});
     }
 
     private static String setDelimiter(String entry) {
