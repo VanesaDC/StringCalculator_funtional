@@ -64,8 +64,7 @@ class sumSould {
         for (String delimiter : delimiters) {
             numberGroup = numberGroup.replace(delimiter, ",");
         }
-        entry = numberGroup;
-        return entry;
+        return numberGroup;
     }
 
 
