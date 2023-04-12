@@ -41,9 +41,9 @@ class sumSould {
 
         String[] figures= entry.split(",");
 
-        List<Integer> numbers= Arrays.stream(figures).map((num)->Integer.parseInt(num)).collect(Collectors.toList());
+        List<Integer> numbers= Arrays.stream(figures).map(Integer::parseInt).collect(Collectors.toList());
         List<Integer> negativeNumbers= numbers.stream().filter(negative->negative<0).collect(Collectors.toList());
-        List<String> negativeExpression= negativeNumbers.stream().map(number->number.toString()).collect(Collectors.toList());
+        List<String> negativeExpression= negativeNumbers.stream().map(Object::toString).collect(Collectors.toList());
         String statement= negativeExpression.stream().reduce("",(sentence,word)->sentence +" "+ word);
         if (!statement.isEmpty()) {
             throw new NegativeException("Error: negative numbers not allowed:" + statement);
