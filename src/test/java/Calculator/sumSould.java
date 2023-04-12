@@ -27,6 +27,26 @@ class sumSould {
             return Integer.parseInt(entry);
         }
 
+
+        if (entry.contains("//")) { //
+
+            entry = entry.replace("//", "");
+            entry = entry.replace("[", "");
+            entry = entry.replace("]", "");
+            String delimiter= String.valueOf(entry.charAt(0));
+            char delimit = entry.charAt(0);
+            entry = entry.replaceFirst(String.valueOf(delimit), "");
+            entry= entry.replaceFirst("\n","");
+            entry= entry.replace(delimiter,",");
+        }
+
+
+            /*String numberSeries = entry.substring(0,"\n")
+            String delimiter = entry.substring(2,indexForSplit).trim();
+            delimiter = delimiter.replace("[","");
+            delimiter = delimiter.replace("]","");
+            numberSeries = numberSeries.replace(delimiter,",");*/
+
         String newLine = "\n";
         if (entry.contains(newLine)){
             entry= entry.replace(newLine, ",");
