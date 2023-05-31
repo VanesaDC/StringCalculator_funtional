@@ -2,4 +2,5 @@
 
 ## Descripcion
 
-Plantilla para practicar testing con java usando JUnit5 configurado con Maven
+Kata TDD para practicar la programación funcional.
+El resultado está en la rama "Final"
